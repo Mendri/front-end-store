@@ -1,16 +1,29 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import FrontEndStoreContext from './FrontEndStoreContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function FrontEndStoreProvider({ children }) {
-	const [test, setTest] = useState('Front-End');
+	const [products, setProducts] = useState([]);
+	const [query, setQuery] = useState('computador');
 	const contextValue = {
-		test,
+		products,
+		query,
 		setStates: {
-			setTest,
+			setProducts,
+			setQuery,
 		}
 	};
+
+	async function getProductsFromQuery(query) {
+		const response = await fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${query}`);
+		const responseJson = await response.json();
+		setProducts(responseJson.results);
+	}
+
+	useEffect(() => {
+		getProductsFromQuery(query);
+	}, []);
 
 	return (
 		<FrontEndStoreContext.Provider value={ contextValue }>
