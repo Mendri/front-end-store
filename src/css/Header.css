@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-image: linear-gradient(rgb(46, 235, 235), rgb(6, 199, 199));
 }
 
 #navigation-container {
@@ -9,11 +10,16 @@
 }
 
 #nav-title {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   margin: 5px 10px;
   font-size: 25px;
+  padding: 5px;
+  color: rgb(255, 255, 255);
 }
 
 .nav-item {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   margin: 5px 10px;
   font-size: 20px;
+  color: rgb(255, 255, 255);
 }
