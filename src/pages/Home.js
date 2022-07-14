@@ -1,24 +1,16 @@
 import React from 'react';
-import { useContext } from 'react';
-import FrontEndStoreContext from '../context/FrontEndStoreContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Products from '../components/Products';
+import Categories from '../components/Categories';
 
 function Home() {
-	const { products } = useContext(FrontEndStoreContext);
-
 	return (
-		<div>
+		<div id='home-page'>
 			<Header />
-			<main>
-				{
-					products.map((product) => (
-						<div key={ product.id }>
-							<h4>{ product.title }</h4>
-							<img src={ product.thumbnail } alt={`imagem de um ${ product.title }`} />
-						</div>
-					))
-				}
+			<main id='home-container'>
+				<Categories />
+				<Products />
 			</main>
 			<Footer />
 		</div>

@@ -5,13 +5,16 @@ import { useState, useEffect } from 'react';
 
 function FrontEndStoreProvider({ children }) {
 	const [products, setProducts] = useState([]);
+	const [ categories, setCategories ] = useState([]);
 	const [query, setQuery] = useState('computador');
 	const contextValue = {
 		products,
 		query,
+		categories,
 		setStates: {
 			setProducts,
 			setQuery,
+			setCategories,
 		}
 	};
 
@@ -21,8 +24,15 @@ function FrontEndStoreProvider({ children }) {
 		setProducts(responseJson.results);
 	}
 
+	async function getCategories() {
+		const response = await fetch('https://api.mercadolibre.com/sites/MLB/categories');
+		const responseJson = await response.json();
+		setCategories(responseJson);
+	}
+
 	useEffect(() => {
 		getProductsFromQuery(query);
+		getCategories();
 	}, []);
 
 	return (
